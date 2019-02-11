@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<head>
+    <title>Carrito</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+    
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+	
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
+</head>
+
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 40px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 7px;
+		padding-right: 7px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 800;
+	    font-size: 25px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
+	<style type="text/css">
+	  .boton_21{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_21:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+	
+<header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="#">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li >
+                            <a href="Buscar.xhtml">Busqueda Plato</a>
+                        </li>
+                        <li class="active">
+                            <a href="Carrito.xhtml">Carrito </a>
+                        </li>
+                        <li>
+                            <a href="Home.xhtml">Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+<body>
+    <main>
+    <div class="box box-info">
+            <div class="box-header with-border">
+            <br />
+            <center>
+            <h2> <em>Carrito</em></h2>
+            </center>
+            </div>
+    </div> 
+      <h:form>
+	    
+	<h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.pedidos}"/>
+	<center>
+		<h:dataTable value ="#{platoControler.pedidos}" var="pedido"
+		rendered="#{not empty platoControler.pedidos}" cellspacing="10" width="50%" >
+			<h:column>
+				<f:facet name="header">Codigo</f:facet>
+				#{pedido.codigo}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Imagne</f:facet>
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(pedido.plato.imagen)}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Descripcion</f:facet>
+				#{pedido.plato.descripcion}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				#{pedido.plato.precio}
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{platoControler.Borrar1(pedido.codigo)}" value="Borrar" class="boton_21" id="btn1" />
+			</h:column>
+              	 		 	
+		</h:dataTable>
+	</center>
+		<div>
+		<center>
+			<h:outputLabel class="btn btn-info pull-center" value="Total de la compra:" for="nombre"/>
+			<h:outputLabel class="btn btn-info pull-center" value="#{pedidoControler.cantidad}" for="tipo"/>
+		</center>
+		</div>
+		<div class="box-footer">
+			<center>
+	             <h:commandButton action="#{platoControler.registrar()}" class="boton_2" id="btn" value="Realizar el pedido" data-dismiss="modal" />
+	        </center>
+	    </div>
+	</h:form>
+    </main>
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="resources/template/site/js/script.js"></script>
+</body> 
+</html>

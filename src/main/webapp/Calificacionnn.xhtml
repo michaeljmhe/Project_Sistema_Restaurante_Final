@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"> 
+
+<head>
+    <title>Calificacion</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+	
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script>   
+</head>
+
+	<style>
+	  .textbox
+	  {
+	  border: 1px solid #DBE1EB;
+	  font-size: 18px;
+	  font-family: Arial, Verdana;
+	  padding-left: 7px;
+	  padding-right: 7px;
+	  padding-top: 10px;
+	  padding-bottom: 10px;
+	  border-radius: 4px;
+	  -moz-border-radius: 4px;
+	  -webkit-border-radius: 4px;
+	  -o-border-radius: 4px;
+	  background: #FFFFFF;
+	  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+	  color: #2E3133;
+	  }
+	  
+	  .textbox:focus
+	  {
+	  color: #2E3133;
+	  border-color: #FBFFAD;
+	  }
+	 </style>
+
+	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+
+<body> 
+ <header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="./">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li>
+                            <a href="Buscar.xhtml">Buscar Plato</a>
+                        </li>
+                         <li class="active">
+                            <a href="Calificacion.xhtml">Calificar Plato</a>
+                        </li>
+                        <li>
+                            <a href="Lista_Plato.xhtml">Carrito</a>
+                        </li>                         
+                        <li>
+                            <a href="Home.xhtml">Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+    
+    <main><center>
+    <f:metadata>
+	<f:viewParam name="id" value="#{platoControler.id}"/>
+	</f:metadata>
+		
+<h:form>	
+    <br/>
+    <h:messages globalOnly="true"/>
+    <div class="grid_4">
+              <h2> <em>Calificacion</em></h2>
+            </div>    
+
+		<div>
+		<h:messages globalOnly="true"/>
+	
+		<h:panelGrid columns ="3">
+
+		<h:outputLabel class="btn btn-info pull-center" value="Plato:" for="foto"/>
+			<img src="data:image/png;base64,#{platoControler.pdao.convertir(platoControler.plato.imagen)}" />
+		<h:message  for="foto"/>
+		
+		<h:outputLabel class="btn btn-info pull-center" value="Descripcon:" for="codigou" />
+		<h:inputText value="#{platoControler.plato.codigo}" id="codigo" class="textbox"  size="50" style='display:none;'/>
+		<h:inputText value="#{platoControler.plato.descripcion}" id="nombre" class="textbox"  size="50" />
+		<h:message  for="nombre"/>
+
+		
+		<h:outputLabel class="btn btn-info pull-center" value="Calificacion:" for="voto"/>
+		<h:selectOneMenu class="btn btn-info pull-center"  value="#{calificacionControler.calificacion.voto}" id="voto"  >
+  			 <f:selectItem itemValue="5" itemLabel="5" />
+   			 <f:selectItem itemValue="4" itemLabel="4" /> 
+   			 <f:selectItem itemValue="3" itemLabel="3" />
+   			 <f:selectItem itemValue="2" itemLabel="2" />
+   			 <f:selectItem itemValue="1" itemLabel="1" />                       
+		</h:selectOneMenu>
+		<h:message  for="voto"/>
+		
+		<h:outputLabel class="btn btn-info pull-center" placeholder="Comentario" value="Comentario" for="comentario"/>
+		<h:inputText  value="#{calificacionControler.calificacion.comentario}" id="comentario" class="textbox"  size="50" a:placeholder="Comentario"/>
+		<h:message  for="comentario"/>
+	
+	</h:panelGrid>
+		
+              <div class="box-footer">
+              	<h:commandButton action="#{calificacionControler.guardar()}" id="btn" value="Calificar" class="boton_2"/>
+              </div>
+              <!-- /.box-footer -->
+        
+          </div>
+	</h:form>
+	  </center>
+    </main>
+    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="resources/template/site/js/script.js"></script>
+</body> 
+</html>
+	

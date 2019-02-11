@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       <f:event listener="#{plantillaController.verificarSesion()}" type="preRenderView"></f:event>
+       
+ 	</h:head>
+
+ 
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURENTE LAS ORQUIDEAS </h1></center>
+
+<h:form>
+	<p:panelGrid columns="4" border="10"  style="width:40%;margin:30px auto;" cellpadding = "8" cellspacing = "3"
+				 headerClass="list-header"
+   				 rowClasses="list-row-even, list-row-odd"
+   				 styleClass="list-background"
+   				 title="#{bundle.Checkout}">
+	
+		<f:facet name="header">
+		<h:outputText value="INFORMACIÓN MESA" style="background-color: #FFE4C4"/>
+		</f:facet>
+		        		
+		<p:outputLabel value="Codigo" />
+		<p:inputText value="#{mesaB.newMesa.codigo}" id="txtcodigo" />
+		<h:inputHidden value="#{mesaB.edit}" />
+		<h:message for="txtcodigo" />
+		
+		<p:outputLabel value="Nombre" />
+		<p:inputText value="#{mesaB.newMesa.nombre}" id="txtnombre" disabled="true"/>
+		
+	     <p:selectOneMenu value="#{mesaB.newMesa.nombre}">
+         <f:selectItem itemValue="MESA M1" itemLabel="MESA M1" />
+         <f:selectItem itemValue="MESA M2" itemLabel="MESA M2" />
+         <f:selectItem itemValue="MESA M3" itemLabel="MESA M3" />
+         <f:selectItem itemValue="MESA M4" itemLabel="MESA M4" />
+         <f:selectItem itemValue="MESA M5" itemLabel="MESA M5" />
+         <f:selectItem itemValue="MESA M6" itemLabel="MESA M6" />
+         <f:selectItem itemValue="MESA M7" itemLabel="MESA M7" />
+         <f:selectItem itemValue="MESA M8" itemLabel="MESA M8" />
+         <f:selectItem itemValue="MESA M9" itemLabel="MESA M9" />
+         <f:selectItem itemValue="MESA M10" itemLabel="MESA M10" />
+         </p:selectOneMenu>
+         
+		<h:message for="txtnombre" />
+   
+		<p:outputLabel value="Estado" />
+		<p:inputText value="#{mesaB.newMesa.estado}" id="txtestado" disabled="true"/>
+		   
+   		 <p:selectOneMenu value="#{mesaB.newMesa.estado}">
+         <f:selectItem itemValue="OCUPADO_M" itemLabel="OCUPADO_M" />
+         <f:selectItem itemValue="DESOCUPADO_M" itemLabel="DESOCUPADO_M" />
+         </p:selectOneMenu>
+         
+		<h:message for="txtestado" />
+				
+		
+		<f:facet name = "footer">
+		<h:panelGroup style = "display:block; text-align:center">
+        <p:commandButton action="#{navegacionBean.principalAdministrador()}" value="Volver" />
+        <p:commandButton action="#{mesaB.guardar()}" value="Guardar" />
+        </h:panelGroup>
+        </f:facet>
+	
+	</p:panelGrid>
+	
+	<h:messages globalOnly="true"/>
+
+</h:form>
+
+</body> 
+</html>

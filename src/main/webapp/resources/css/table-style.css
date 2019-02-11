@@ -1,0 +1,118 @@
+body {
+    background-color: #00FF00;
+    background-image: url("bg-left.png");
+}
+ 
+table.people {
+    width: 100%;
+    border-collapse: collapse; /* so we can control cellspacing in a practical way */
+    border-bottom:0; /* you may not want the bottom of your table have spacing */
+}
+ 
+table.people th,
+table.people td {
+    padding: 5px;
+    text-align: left;
+    font-family: Arial, Verdana, sans-serif;
+    border: 4px solid #000; /* this can be seen as cellspacing... */
+    border-bottom:0;
+}
+ 
+/* you may not want the top of your table have spacing */
+table.people th {
+    border-top: 0;
+}
+ 
+/* you may not want the left most and right most side of your table have spacing */
+table.people th.first,
+table.people td.name {
+    border-left: 0;
+}
+ 
+table.people th.last,
+table.people td.dateOfBirth {
+    border-right: 0;
+}
+ 
+table.people th {
+    background-color: #ddd;
+    color: #BB0000;
+}
+ 
+table.people tr.odd {
+    background-color: #DDFFFF;
+}
+ 
+table.people tr.even {
+    background-color: #FBFBFB;
+}
+
+ .button-width {  
+ width: 250px;  
+ height: 50px;   
+    color: #BB0000;
+    background: #29b6a0;
+    border-color: #23a38f;
+    font-family: "Homer Simpson", cursive;
+    font-size-adjust: 1.0;
+            
+ }  
+ .button-color {  
+ width: 250px;  
+ height: 150px;  
+    color: #BB0000;
+    background: #29b6a0;
+    border-color: #23a38f;    
+    font-family: "Homer Simpson", cursive;
+    font-size-adjust: 1.0;
+ } 
+
+ .button-width-buttons {  
+ width: 100px;  
+ height: 50px;   
+    color: #c0c0c0;
+    background: #0000ff;
+    border-color: #ff0000;
+            
+ }  
+ .button-color-buttons {  
+ width: 100px;  
+ height: 10px;  
+    color: #c0c0c0;
+    background: #0000ff;
+    border-color: #ff0000;         
+ } 
+ 
+  .button-width-buttons-list {  
+ width: 120px;  
+ height: 50px;   
+    color: #c0c0c0;
+    background: #0000ff;
+    border-color: #23a38f;
+            
+ }  
+ .button-color-buttons-list {  
+ width: 120px;  
+ height: 10px;  
+    color: #c0c0c0;
+    background: #0000ff;
+    border-color: #23a38f;         
+ } 
+ 
+ panelGrid.panelGridA {
+    background-color: Yellow;
+    bottom: 0px; left: 0px; right: 0px; top: 0px; 
+    width: 150px;"
+}
+
+.list-header {
+    background-color: #8080ff;
+    color: #000000;
+    text-align: center;
+    width: 50%;
+}
+
+.c2 {
+    width:40%;margin:30px auto; 
+    background-color: #FFFFFF;
+}

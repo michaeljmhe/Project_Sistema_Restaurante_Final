@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       <f:event listener="#{plantillaController.verificarSesion()}" type="preRenderView"></f:event>
+       
+ 	</h:head>
+
+<h:head></h:head> 
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURANTE LAS ORQUIDEAS </h1></center>
+
+<h:form id="formMostrar">
+
+<h:dataTable var="_producto" value="#{productoB.productos}"
+    rendered="#{not empty productoB.productos}"
+	styleClass="people"
+    cellspacing="0" 
+    cellpadding="0" 
+    border="0"
+    rowClasses="odd,even"
+    columnClasses="codigo,nombre,descripcion,precio,acciones">
+    
+    <f:facet name="header">
+	<h:panelGroup style = "display:block; text-align:center">
+	<h:outputText value="LISTA DE PRODUCTOS" />
+	</h:panelGroup>
+    </f:facet>
+    
+    <h:column headerstyleClass="first">
+        <f:facet name="header">Codigo</f:facet>
+        #{_producto.codigo}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Nombre</f:facet>
+        #{_producto.nombre}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Descripción</f:facet>
+        #{_producto.descripcion}
+    </h:column>
+    <h:column headerstyleClass="last">
+        <f:facet name="header">Precio</f:facet>
+        #{_producto.precio}
+    </h:column>
+    
+    <h:column>
+        <f:facet name="header">Carrito</f:facet>
+        <p:commandButton value="Realizar Pedido" onclick="PF('dlg').show();" />
+
+    <p:dialog id="dlg2" header="Confirmar Pedido" showEffect="explode" hideEffect="explode"
+    			widgetVar="dlg" modal="true" resizable="false" minWidth="200" >
+    	<h:outputText value="¿Desea realizar pedido?" />
+    	<p:commandButton value="No" onclick="dlg2.hide();" />
+    	<p:commandButton value = "Si" action = "#{productoB.listProductosPrecioPedido(_producto.codigo)}" />
+    </p:dialog>    
+   </h:column> 
+ 
+    <f:facet name = "footer">
+	<h:panelGroup style = "display:block; text-align:center">
+	<h:commandButton action="#{productoB.volverListcategorias()}" value="VOLVER ATRAS" style="margin-right:20px;" immediate="true" styleClass="button-width" />
+	<h:commandButton action="#{navegacionBean.listCategoriaPorCategoria()}" value="RECARGAR DATOS"  style="margin-right:20px;" immediate="true" styleClass="button-width" icon="save"/>
+	<h:commandButton action="#{navegacionBean.home()}" value="Cerrar Sesión"  immediate="true" styleClass="button-width" />
+	</h:panelGroup>
+    </f:facet>
+    
+</h:dataTable>
+
+<h:panelGrid columns="4" border="10"  style="width:40%;margin:30px auto; background-color: #FFFFFF;" cellpadding = "8" cellspacing = "3" >
+	
+		<f:facet name="header">
+		<h:outputText value="CARRITO PEDIDOS" />
+		</f:facet>
+		        	
+		
+		<p:outputLabel value="Total valor a pagar" />
+		<p:inputText value="#{productoB.newProducto.precio}" style="background-color: #0000FF" id="txtnombre" disabled="true"/>
+         
+		<p:outputLabel value="$" />
+				
+		
+		<f:facet name = "footer">
+		<h:panelGroup style = "display:block; text-align:center">
+        <p:commandButton value="REALIZAR COMPRA" immediate="true" onclick="PF('dlg3').show();" icon="save"/>
+        <p:dialog id="dlg2" header="Pedido Realizado Exitosamente" showEffect="explode" hideEffect="explode"
+    			widgetVar="dlg3" modal="true" resizable="false" minWidth="200" >
+    	<h:outputText value="!Gracias por preferirnos!" />
+    	<p:commandButton value = "Aceptar" action = "#{productoB.home()}" />
+   		 </p:dialog>  
+        </h:panelGroup>
+        </f:facet>
+	
+	</h:panelGrid>
+
+</h:form>
+
+</body> 
+</html>

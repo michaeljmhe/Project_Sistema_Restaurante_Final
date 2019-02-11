@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://java.sun.com/jsf/html">  
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       
+ 	</h:head>
+
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURANTE LAS ORQUIDEAS </h1></center>
+
+<h:form>
+
+<h:dataTable var="_calificacion" value="#{calificacionB.calificaciones}"
+    rendered="#{not empty calificacionB.calificaciones}"
+	styleClass="people"
+    cellspacing="0" 
+    cellpadding="0" 
+    border="0"
+    rowClasses="odd,even"
+    columnClasses="codigo,nombre,comentario,producto,acciones">
+
+	<f:facet name="header">
+	<h:panelGroup style = "display:block; text-align:center">
+	<h:outputText value="LISTADO DE CALIFICACIONES" />
+	</h:panelGroup>
+    </f:facet>
+    
+    <h:column headerstyleClass="first">
+        <f:facet name="header">Codigo</f:facet>
+        #{_calificacion.codigo}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Calificación</f:facet>
+        #{_calificacion.voto}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Comentario</f:facet>
+        #{_calificacion.comentario}
+    </h:column>
+    <h:column headerstyleClass="last">
+        <f:facet name="header">Producto</f:facet>
+        #{_calificacion.prodCalId}
+    </h:column>
+    
+    <f:facet name = "footer">
+	<h:panelGroup style = "display:block; text-align:center">
+	<p:commandButton action="create-categoria" value="VOLVER MENU PRINCIPAL" immediate="true" styleClass="button-width" />
+	</h:panelGroup>
+    </f:facet>
+    
+</h:dataTable>
+
+
+</h:form>
+
+</body> 
+</html>

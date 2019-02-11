@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">  
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       <f:event listener="#{plantillaController.verificarSesion()}" type="preRenderView"></f:event>
+       
+ 	</h:head>
+ 	
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURANTE LAS ORQUIDEAS </h1></center>
+
+<h:form>
+
+<h:dataTable var="_producto" value="#{productoB.productos}"
+    rendered="#{not empty productoB.productos}"
+    styleClass="people"
+    cellspacing="0" 
+    cellpadding="0" 
+    border="0"
+    rowClasses="odd,even"
+    columnClasses="codigo,nombre,descripcion,cantidad,precio,categoria,acciones">
+    
+    <f:facet name="header">
+	<h:panelGroup style = "display:block; text-align:center">
+	<h:outputText value="LISTA DE PRODUCTOS" />
+	</h:panelGroup>
+    </f:facet>
+    
+    <h:column>
+        <f:facet name="header">Codigo</f:facet>
+        #{_producto.codigo}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Nombre</f:facet>
+        #{_producto.nombre}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Descripción</f:facet>
+        #{_producto.descripcion}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Cantidad</f:facet>
+        #{_producto.cantidad}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Precio</f:facet>
+        #{_producto.precio}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Categoria</f:facet>
+        #{_producto.catId}
+    </h:column>
+    
+    <h:column>
+        <f:facet name="header">Acciones</f:facet>
+        <p:commandButton value="Borrar" onclick="PF('dlg').show();" style="margin-right:20px;" immediate="true" styleClass="button-width-buttons" />
+        <p:commandButton action="#{productoB.editar(_producto)}" value="Editar" immediate="true" styleClass="button-width-buttons" />
+        
+        <p:dialog id="dlg2" header="Confirmar Eliminar" showEffect="explode" hideEffect="explode"
+    			widgetVar="dlg" modal="true" resizable="false" minWidth="200" >
+    	<h:outputText value="¿Desea eliminar producto?" />
+    	<p:commandButton value="No" onclick="dlg2.hide();" />
+    	<p:commandButton value = "Si" action = "#{productoB.borrar(_producto.codigo)}" />
+   		 </p:dialog> 
+        
+    </h:column>
+    
+    <f:facet name="footer">
+    <h:panelGroup style = "display:block; text-align:center">
+    	<h:commandButton action="create-producto" value="Nuevo Producto" style="margin-right:20px;"  immediate="true" styleClass="button-width"/>
+    	<h:commandButton action="#{productoB.listProductos()}" value="Recargar datos" style="margin-right:20px;"  immediate="true" styleClass="button-width" />
+    	<h:commandButton action="principal-administrador" value="Pricipal" immediate="true" styleClass="button-width"/>
+    	</h:panelGroup>
+    </f:facet>
+</h:dataTable>
+
+
+</h:form>
+
+</body> 
+</html>

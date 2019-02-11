@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<title>Restaurante | Home :: w3layouts</title>
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--webfonts-->
+	<link
+		href='http://fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500'
+		rel='stylesheet' type='text/css'></link>
+	<link
+		href='http://fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300'
+		rel='stylesheet' type='text/css'></link>
+	<!--webfonts-->
+</h:head>
+<h:head>
+<title>Restaurante Aplicaciones | Home :: w3layouts</title>
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		<link href='http://fonts.googleapis.com/css?family=Lobster|Pacifico:400,700,300|Roboto:400,100,100italic,300,300italic,400italic,500italic,500'  rel='stylesheet' type='text/css'></link>
+		<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,500,600,700,300' rel='stylesheet' type='text/css'></link>
+		<!--webfonts-->
+</h:head> 
+<body> 
+
+<h:form>
+		<div class="Login">
+							<div class="Login-head">
+						    	<h3>CRECION DE USUARIO</h3>
+						 	</div>
+
+						<form>
+						<div class="Rememb">
+								<div>
+									<h4>Username</h4>
+						  			<h:inputText value="#{loginBean.newLogin.usuario}" id="txtcorreo1" />
+						  			<div class="clear"> </div>
+						  		</div>
+						  		
+						  		<div>
+						  			<h4>Password</h4>
+									<h:inputSecret  value="#{loginBean.newLogin.password}" id="txtpassword1"  />
+									
+								  	<div class="clear"> </div>
+								</div>
+									 
+								<div class="submit-button">
+								<h:form>
+									<h:commandButton action="#{loginBean.guardar()}" value="Registro"/>
+									
+									</h:form>
+									<h4> </h4>
+								</div>
+								</div>	
+						  </form>
+						  
+						</div>
+						
+			  
+			  
+</h:form>
+
+</body> 
+</html>

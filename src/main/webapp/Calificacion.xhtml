@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       
+ 	</h:head>
+<body >
+
+<header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                   		 <center>
+                        <a href="">Restaurante "LAS ORQUIDEAS"</a>
+                        </center>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li>
+                            <a href="list-categorias-usuario.xhtml">Categorias de platos</a>
+                        </li>
+                        <li>
+                            <a href="Home.xhtml">Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+
+<h:form>
+	<p:panelGrid columns="3" border="10"  style="width:40%;margin:30px auto;" cellpadding = "8" cellspacing = "3"
+				 headerClass="list-header"
+   				 rowClasses="list-row-even, list-row-odd"
+   				 styleClass="list-background"
+   				 title="#{bundle.Checkout}">
+	
+		<f:facet name="header">
+		<h:outputText value="CALIFICACIÓN DE PRODUCTO" style="background-color: #D8BFD8"/>
+		</f:facet>
+		     
+		<p:outputLabel value="Codigo" />
+		<p:inputText value="#{calificacionB.newCalificacion.codigo}" id="txtcodigo" />
+		<h:message for="txtcodigo" />
+		
+		 <p:outputLabel value="Calificación" />
+	     <p:selectOneMenu value="#{calificacionB.newCalificacion.voto}">
+         <f:selectItem itemValue="1" itemLabel="1" />
+         <f:selectItem itemValue="2" itemLabel="2" />
+         <f:selectItem itemValue="3" itemLabel="3" />
+         <f:selectItem itemValue="4" itemLabel="4" />
+         <f:selectItem itemValue="5" itemLabel="5" />
+         </p:selectOneMenu>
+         
+		<h:message for="txtcali" />
+   
+		<p:outputLabel value="Comentario" />
+		<p:inputText value="#{calificacionB.newCalificacion.comentario}" id="txtestado"/>         
+		<h:message for="txtestado" />
+		
+		<h:outputLabel value="Producto" />
+        <h:selectOneMenu id="pedProId" value="#{calificacionB.newCalificacion.prodCalId}" >
+        	<f:selectItems value="#{productosBean.itemsAvailableSelectOne}"/>
+        </h:selectOneMenu>
+        
+        <h:inputHidden value="#{calificacionB.edit}"/>
+				
+		
+		<f:facet name = "footer">
+		<h:panelGroup style = "display:block; text-align:center">
+        <p:commandButton value="Guardar" onclick="PF('dlg').show();" />
+        
+        <p:dialog id="dlg2" header="Calificación" showEffect="explode" hideEffect="explode"
+    			widgetVar="dlg" modal="true" resizable="false" minWidth="200" >
+    	<h:outputText value="!Gracias por su calificación!" />
+    	<p:commandButton value = "Aceptar" action = "#{calificacionB.guardar()}" />
+    	</p:dialog>       
+    	    
+        </h:panelGroup>
+        </f:facet>
+	
+	</p:panelGrid>
+	
+	<h:messages globalOnly="true"/>
+
+</h:form>
+
+</body> 
+</html>

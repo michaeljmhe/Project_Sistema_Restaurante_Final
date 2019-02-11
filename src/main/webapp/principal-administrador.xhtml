@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       <f:event listener="#{plantillaController.verificarSesion()}" type="preRenderView"></f:event>
+       
+ 	</h:head>
+
+ 
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURENTE "LAS ORQUIDEAS" </h1></center>
+
+<h:form>
+	<p:panelGrid columns="3" border="10"  style="width:40%;margin:30px auto;" cellpadding = "8" cellspacing = "3"
+				 headerClass="list-header"
+   				 rowClasses="list-row-even, list-row-odd"
+   				 styleClass="list-background"
+   				 title="#{bundle.Checkout}">
+	
+		<f:facet name="header">
+		<h:outputText value="LISTA DE ACCIONES DE ADMINISTRADOR" style="background-color: #008B8B"/>
+		</f:facet>
+		        		
+		<p:outputLabel value="Mesas" />
+		<p:commandButton action="#{navegacionBean.agregarMesa()}" value="Agregar Mesa" />
+		<p:commandButton action="#{navegacionBean.listMesa()}" value="Listar Mesas" />
+		
+		<p:outputLabel value="Clientes" />
+		<p:commandButton action="#{navegacionBean.agregarCliente()}" value="Agregar Clientes" />
+		<p:commandButton action="#{navegacionBean.listClientes()}" value="Listar Clientes" />
+		
+		<p:outputLabel value="Categorias" />
+		<p:commandButton action="#{navegacionBean.agregarCategoria()}" value="Agregar Categorias" />
+		<p:commandButton action="#{navegacionBean.listCategoria()}" value="Listar Categorias" />
+		
+		<p:outputLabel value="Productos" />
+		<p:commandButton action="#{navegacionBean.agregarProducto()}" value="Agregar Productos" />
+		<p:commandButton action="#{navegacionBean.listProducto()}" value="Listar Productos" />
+		
+		<p:outputLabel value="Pedido" />
+		<p:commandButton action="#{navegacionBean.agregarPedido()}" value="Agregar Pedido" /> 
+		<p:commandButton action="#{navegacionBean.listPedido()}" value="Listar Pedido" />
+		
+		
+		<f:facet name = "footer">
+		<h:panelGroup style = "display:block; text-align:center">
+        <p:commandButton action="#{navegacionBean.home()}" value="Cerrar Sesión" />
+        </h:panelGroup>
+        </f:facet>
+	
+	</p:panelGrid>
+	
+	<h:messages globalOnly="true"/>
+
+</h:form>
+
+</body> 
+</html>

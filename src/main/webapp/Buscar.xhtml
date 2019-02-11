@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<head>
+    <title>Busqueda</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+	<link rel="stylesheet" href="resources/template/site/css/cal.css"/>
+	
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src='resources/template/site/js/device.min.js'></script> 
+</head>
+
+	<style>
+  		.textbox
+		  {
+		  border: 1px solid #DBE1EB;
+		  font-size: 18px;
+		  font-family: Arial, Verdana;
+		  padding-left: 7px;
+		  padding-right: 7px;
+		  padding-top: 10px;
+		  padding-bottom: 10px;
+		  border-radius: 4px;
+		  -moz-border-radius: 4px;
+		  -webkit-border-radius: 4px;
+		  -o-border-radius: 4px;
+		  background: #FFFFFF;
+		  background: linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -moz-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -webkit-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
+		  color: #2E3133;
+		  }
+		  
+		  .textbox:focus
+		  {
+		  color: #2E3133;
+		  border-color: #FBFFAD;
+		  }
+ 	</style>
+ 	
+ 	<style type="text/css">
+	  .boton_2{
+	    text-decoration: none;
+	    padding: 18px;
+	    font-family: arial;
+	    text-transform: uppercase;
+	    padding-left: 5px;
+		padding-right: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-o-border-radius: 4px;
+	    font-weight: 200;
+	    font-size: 15px;
+	    color: white;
+	    background-color: #9b0e0e;
+	  }
+	  .boton_2:hover{
+	    color: #9b0e0e;
+	    background-color: #bc6355;
+	    text-decoration: none;
+	  }
+	</style>
+ 	
+ 	<style>
+ 	#responsive-form{
+		 max-width:600px /*-- change this to get your desired form width --*/;
+		 margin:0 auto;
+		        width:100%;
+		}
+		.form-row{
+		 width: 100%;
+		}
+		.column-half, .column-full{
+		 float: left;
+		 position: relative;
+		 padding: 0.65rem;
+		 width:100%;
+		 -webkit-box-sizing: border-box;
+		        -moz-box-sizing: border-box;
+		        box-sizing: border-box
+		}
+		.clearfix:after {
+		 content: "";
+		 display: table;
+		 clear: both;
+		}
+		 
+		/**---------------- Media query ----------------**/
+		@media only screen and (min-width: 48em) { 
+		 .column-half{
+		 width: 50%;
+		 }
+		}
+ 		</style>
+ 		
+ 		    <style>
+    .slider {
+		width: 95%;
+		margin: auto;
+		overflow: hidden;
+	}
+	
+	.slider ul {
+		display: flex;
+		padding: 0;
+		width: 400%;
+		
+		animation: cambio 20s infinite alternate linear;
+	}
+
+	.slider li {
+		width: 100%;
+		list-style: none;
+	}
+
+	.slider img {
+		width: 100%;
+	}
+
+	@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+	</style>
+ 	<f:metadata>
+	<f:viewParam name="id" value="#{usuarioControler.codigo}"/>
+	</f:metadata>
+<body> 
+<header>
+
+        <div id="stuck_container" class="stuck_container">
+            <div class="container">
+
+                <div class="brand">
+                    <h1 class="brand_name">
+                        <a href="Home.xhtml">Fast Food</a>
+                    </h1>
+                </div>
+
+                <nav class="nav">
+                    <ul class="sf-menu">
+                        <li>
+                            <a href="Home.xhtml">Home</a>
+                        </li>
+                         <li class="active">
+                            <a href="Buscar.xhtml">Busqueda Plato</a>
+                        </li>
+                        <li>
+                            <a href="Carrito.xhtml">Carrito </a>
+                        </li>                         
+                        <li>
+                            <a href="Home.xhtml">Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+</header>
+    
+    
+    <main>
+    <center>
+     <h2><em>Platos</em>Recomendados</h2> 
+           <div >
+    			<center>
+		<h:dataTable value ="#{platoControler.predicciones}" var="busquedas"  id="tablas" cellspacing="5" width="20%" >
+			<h:column>
+			<f:facet name="header"></f:facet>
+				<div >
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
+				</div>
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{platoControler.listadatosB(pre.item,usuarioControler.codigo)}" value="Pedir" class="boton_2" />
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{platoControler.listadatosU(pre.item)}" value="Ir Lugar" class="boton_2" />
+			</h:column>
+			
+		</h:dataTable>
+	</center>
+		   </div>
+	<h:form  enctype="multipart/form-data">
+		<div class="box box-info">
+		<div class="box-header with-border">
+              <h2 class="box-title">
+              <em>Busqueda De Platos
+              </em>
+              </h2>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            
+              <div class="box-body">
+                <div class="form-group">
+                  <div class="col-sm-10">
+                  	<h:inputText value="#{platoControler.nombre}" class="textbox" size="50" id="buscar" a:placeholder="pizza"/>
+					<h:message for="buscar" errorClass ="Invalid"/>
+					<h:outputLabel class="btn btn-info pull-center" value="Tipo de comida:" for="tipo"/>
+					<h:selectOneMenu class="btn btn-info pull-center"  value="#{platoControler.tipo}" id="tipo"  >
+			  			 <f:selectItem itemValue="5" itemLabel="comida rapida" />
+			   			 <f:selectItem itemValue="4" itemLabel="mariscos" /> 
+			   			 <f:selectItem itemValue="3" itemLabel="comida tradicional" />                      
+					</h:selectOneMenu>
+					<h:message  for="tipo"/>
+						<h:commandButton action="#{platoControler.doRead()}" class="boton_2" id="btn" value="Buscar" >
+              	 		 	<f:ajax execute="buscar" render = "tablas" />
+          				</h:commandButton>
+                  </div>
+                </div>
+              </div>
+     		 <!-- /.box-body -->
+              <div class="box-footer">
+ 
+              </div>
+              <!-- /.box-footer -->
+              
+              <h:outputText value="No existe registros" 
+	rendered="#{empty platoControler.platos}"/>
+	<br/>
+		 <center>
+		<h:dataTable value ="#{platoControler.platos}" var="busquedas"  id="tablas" cellspacing="10" width="70%" >
+			<h:column>
+			<f:facet name="header"></f:facet>
+				<div >
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.imagen)}" />
+				</div>
+			</h:column>
+			<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+				#{busquedas.descripcion}
+			</h:column>
+			<h:column>
+			<f:facet name="header">Precio</f:facet>
+				<p>$ #{busquedas.precio}</p> 
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Restaurante</f:facet>
+				#{busquedas.restaurante.nombre}
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Restaurante</f:facet>
+				<div >
+				<img src="data:image/png;base64,#{platoControler.pdao.convertir(busquedas.restaurante.imagen)}" />
+				</div>
+			</h:column>
+			
+			<h:column>
+				<h:commandButton action="#{platoControler.listadatosB(busquedas.codigo,usuarioControler.codigo)}" value="Pedir" class="boton_2" />
+			</h:column>
+			<h:column>
+				<h:commandButton action="#{platoControler.listadatosU(busquedas.codigo)}" value="Ir Lugar" class="boton_2" />	
+			</h:column>
+				<h:column>
+				<h:commandButton action="#{platoControler.listadatosC(busquedas.codigo,usuarioControler.codigo)}" value="Calificar" class="boton_2" />
+			</h:column>
+			
+		</h:dataTable>
+	</center>
+          </div>
+          <br/>
+	</h:form>
+	<div>
+		
+	</div>
+	  </center>
+    </main>
+    
+     <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+<script src="resources/template/site/js/script.js"></script>
+</body> 
+</html>
+	

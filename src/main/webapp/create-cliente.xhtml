@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+      
+<h:head>  <title>Sistema Restaurante</title> 
+ 
+ <link href="estilo.css" type="text/css"  rel="stylesheet" />  
+ <h:outputStylesheet library="css" name="table-style.css"  />
+ <f:event listener="#{plantillaController.verificarSesion()}" type="preRenderView"></f:event>
+ 
+</h:head>
+
+<body> 
+
+<center><h1 id="signInTitle" class="first">RESTAURENTE LAS ORQUIDEAS </h1></center>
+
+<h:form>
+	<p:panelGrid columns="3" border="10"  style="width:40%;margin:30px auto;" cellpadding = "8" cellspacing = "3"
+				headerClass="list-header"
+   				 rowClasses="list-row-even, list-row-odd"
+   				 styleClass="list-background"
+   				 title="#{bundle.Checkout}">
+	
+		<f:facet name="header">
+		<h:outputText value="INFORMACIÓN CLIENTE" style="background-color: #FFE4C4" />
+		</f:facet>
+	
+		<p:outputLabel value="Cedula" />
+		<p:inputText value="#{clienteB.newCliente.cedula}" id="txtcodigo" />
+		<h:message for="txtcodigo" />
+		
+		<p:outputLabel value="Nombre" />
+		<p:inputText value="#{clienteB.newCliente.nombre}" id="txtnombre" />
+		<h:message for="txtnombre" />
+		
+		<p:outputLabel value="Apellido" />
+		<p:inputText value="#{clienteB.newCliente.apellido}" id="txtapellido" />
+		<h:message for="txtapellido" />
+		
+		<p:outputLabel value="Direccion" />
+		<p:inputText value="#{clienteB.newCliente.direccion}" id="txtdireccion" />
+		<h:message for="txtdireccion" />
+		
+		<p:outputLabel value="Ciudad" />
+		<p:inputText value="#{clienteB.newCliente.ciudad}" id="txtciudad" />
+		<h:message for="txtciudad" />
+
+		<p:outputLabel value="Telefono" />
+		<p:inputText value="#{clienteB.newCliente.telefono}" id="txttelefono" />
+		<h:message for="txttelefono" />
+		
+		<p:outputLabel value="E-mail" />
+		<p:inputText value="#{clienteB.newCliente.emil}" id="txtemail" />
+		<h:message for="txtemail" />
+
+		<p:outputLabel value="Fecha Nacimiento" />
+		<p:inputText value="#{clienteB.newCliente.fechaNacimeinto}" id="txtfecha" >
+		<f:convertDateTime pattern="dd/MM/yyyy"/>
+		</p:inputText>
+		<h:message for="txtfecha" />
+		
+		<p:outputLabel value="Mesa" />
+        <p:selectOneMenu id="mesId" value="#{clienteB.newCliente.mesId}">
+        <f:selectItems value="#{mesaBean.itemsAvailableSelectOne}"/>
+        <h:message for="mesId" showDetail="true" />
+        </p:selectOneMenu>
+	    
+		<h:inputHidden value="#{clienteB.edit}" />
+		
+		<f:facet name = "footer">
+		<h:panelGroup style = "display:block; text-align:center">
+		<p:commandButton action="#{clienteB.guardar()}" value="Guardar" />
+		</h:panelGroup>
+        </f:facet>
+	
+	</p:panelGrid>
+	
+	
+	<p:messages errorStyle="color: red" infoStyle="color: green" globalOnly="true"/>
+
+</h:form>
+
+</body> 
+</html>

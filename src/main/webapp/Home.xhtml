@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<head>
+<title>Home</title>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="icon" href="resources/template/site/images/favicon.ico" type="resources/template/site/image/x-icon"/>
+    <link rel="stylesheet" href="resources/template/site/css/grid.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/style.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/camera.css"/>
+    <link rel="stylesheet" href="resources/template/site/css/jquery.fancybox.css"/>
+
+    <script src="resources/template/site/js/jquery.js"></script>
+    <script src="resources/template/site/js/jquery-migrate-1.2.1.js"></script>
+    <script src="resources/template/site/js/device.min.js"></script> 
+</head>
+    <style>
+    .slider {
+		width: 95%;
+		margin: auto;
+		overflow: hidden;
+	}
+	
+	.slider ul {
+		display: flex;
+		padding: 0;
+		width: 400%;
+		
+		animation: cambio 20s infinite alternate linear;
+	}
+
+	.slider li {
+		width: 100%;
+		list-style: none;
+	}
+
+	.slider img {
+		width: 100%;
+	}
+
+	@keyframes cambio {
+	0% {margin-left: 0;}
+	20% {margin-left: 0;}
+	
+	25% {margin-left: -100%;}
+	45% {margin-left: -100%;}
+	
+	50% {margin-left: -200%;}
+	70% {margin-left: -200%;}
+	
+	75% {margin-left: -300%;}
+	100% {margin-left: -300%;}
+	</style>
+
+
+<body> 
+<div class="page">
+    <!--========================================================
+                              HEADER
+    =========================================================-->
+    <header>
+
+        <div class="camera_container">
+            <div class="brand wow fadeIn">
+                <h1 class="brand_name">
+                    <a href="#">ORQUIDEAS</a>
+                </h1>
+            </div>
+        </div>
+        
+               <div class="toggle-menu-container">
+            <nav class="nav">
+                <div class="nav_title"></div>
+                <a class="sf-menu-toggle fa fa-bars" href="#"></a>
+                <ul class="sf-menu">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Cuenta</a>
+                        <ul>
+                            <li>
+                                <a href="login.xhtml">Inicial Sesion</a>
+                            </li>
+                            <li>
+                                <a href="resgistrouser.xhtml">Registrarse</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="Buscar.xhtml">Buscar Plato</a>
+                    </li>
+                    <li>
+                        <a href="Carrito.xhtml">Carrito</a>'
+                    </li>
+                </ul>
+            </nav>            
+        </div>
+
+    </header>
+    <!--========================================================
+                              CONTENT
+    =========================================================-->
+    <main>
+        <section class="well">  
+         <h2><em>Bienvenido</em>Platos del Día</h2> 
+           <div class="slider">
+			<ul>
+				<li>
+ 					<img src="http://www.andreicrivat.ro/wp-content/uploads/2015/12/pizza-700x300.jpg" alt=""/>
+ 		       </li>
+				<li>
+				  <img src="http://www.mamatieneunplan.com/img/actividades/1233_mamatieneunplan-hamburguesas-gsd.jpg" alt=""/>
+				</li>
+				<li>
+				  <img src="http://s3-us-west-1.amazonaws.com/app-static-quepasa/wp-content/uploads/2016/04/21230136/Marilyn-700x300.jpg" alt=""/>
+				</li>
+				<li>
+				  <img src="https://talleresculinaria.de/wp-content/uploads/2017/11/Restaurantes-y-gastronom%C3%ADa-en-Medell%C3%ADn-Pescado-Marisco-700x300.jpg" alt=""/>
+				</li>
+			</ul>
+		</div>
+		 <div class="container">
+		 <h2><em>Bienvenido</em>Al lugar donde tu puedes</h2> 
+                <div class="row">
+                    <div class="grid_6">
+                        <div class="img img__border">
+                        	<div >
+                        	<img src="resources/template/site/images/page-1_img0.jpg" alt=""/>
+                        	</div>
+                        </div>
+                        <p class="center indents-1">Realizar la busqueda de platos y ralizar su respectivo pedido.</p>
+                    </div>
+                    <div class="grid_6">
+                        <div class="img img__border"><div ><img src="resources/template/site/images/mapa.jpg" alt=""/></div></div>
+                        <p class="center indents-1">Ver la ubicación del restaurante donde se encuentra un plato.</p>
+                    </div>
+                </div>
+            </div>       
+        </section>
+        <section class="parallax parallax1" parallax-speed="-0.4">
+            <div class="container center">
+                <h2>
+                	<em>Restaurantes</em>
+                </h2>
+                	<p:dataGrid var="res" value="#{restaurantControler.restaurantes}" columns="3" layout="grid"
+				        rows="6" paginator="true" id="rest"
+				        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				        rowsPerPageTemplate="3,6,9">
+				 
+				        <p:panel header="#{res.nombre}" style="text-align:center">
+				            <h:panelGrid columns="1" style="width:100%">
+				                <h:graphicImage value="data:image/jpg;base64,#{platoControler.pdao.convertir(res.imagen)}" />
+				 
+				                <h:outputText value="#{res.tipo}" />
+				                <h:outputText value="#{res.ubicaciones.get(0).direccion}" />
+				 
+				            </h:panelGrid>
+				        </p:panel>
+				 
+				    </p:dataGrid>
+							
+            </div>
+        </section>
+    </main>
+
+    <!--========================================================
+                              FOOTER
+    =========================================================-->
+    <footer>
+        <div class="container">
+            <ul class="socials">
+                <li><a href="#" class="fa fa-facebook"></a></li>
+                <li><a href="#" class="fa fa-tumblr"></a></li>
+                <li><a href="#" class="fa fa-google-plus"></a></li>
+            </ul>
+            <div class="copyright">© <span id="copyright-year"></span> |
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="tm"><a href="#"><img src="resources/template/site/images/TM_logo.png" alt=""/></a></div>
+    </footer>
+</div>
+
+<script src="resources/template/site/js/script.js"></script>
+</body>
+</html>

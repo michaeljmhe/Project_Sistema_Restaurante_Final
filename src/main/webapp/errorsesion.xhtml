@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"> 
+
+     <h:head>  <title>Sistema Restaurante</title>
+      
+       <h:outputStylesheet library="css" name="table-style.css"  />
+       
+ 	</h:head>
+ 	
+<body> 
+
+<center><h1 id="signInTitle" class="first">PERMISOS INSUFICIENTES </h1></center>
+<center><h1 id="signInTitle" class="first">Para ver el contenido</h1></center>
+<h:form>
+    
+    	<p:panelGrid columns="3" border="10"  style="width:40%;margin:30px auto;" cellpadding = "8" cellspacing = "3"
+				 headerClass="list-header"
+   				 rowClasses="list-row-even, list-row-odd"
+   				 styleClass="list-background"
+   				 title="#{bundle.Checkout}">
+	
+		<f:facet name="header">
+		<h:outputText value="PORFAVOR INICIE SESIÓN" style="background-color: #00FFFF"/>
+		</f:facet>
+		
+		<h4> </h4>
+		
+	<f:facet name = "footer">
+	<h:panelGroup style = "display:block; text-align:center">
+	<h:commandButton action="#{navegacionBean.home()}" value="PRINCIPAL" immediate="true" styleClass="button-width-buttons-list"  />
+	</h:panelGroup>
+    </f:facet>
+		
+		</p:panelGrid>
+    
+</h:form>
+
+</body> 
+</html>
